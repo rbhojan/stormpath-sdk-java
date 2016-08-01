@@ -21,6 +21,8 @@ import com.stormpath.sdk.authc.AuthenticationResult;
 import com.stormpath.sdk.impl.ds.InternalDataStore;
 import com.stormpath.sdk.impl.util.Base64;
 import com.stormpath.sdk.lang.Assert;
+import com.stormpath.sdk.lang.Strings;
+import com.stormpath.sdk.organization.Organization;
 
 import java.io.UnsupportedEncodingException;
 
@@ -64,6 +66,13 @@ public class BasicAuthenticator {
 
         if(request.getAccountStore() != null) {
             attempt.setAccountStore(request.getAccountStore());
+        }
+
+        //since 1.0.0
+        if(Strings.hasText(request.getOrganizationNameKey())) {
+            Organization organization = this.dataStore.instantiate(Organization.class);
+            organization.setNameKey(request.getOrganizationNameKey());
+            attempt.setAccountStore(organization);
         }
 
         String href = parentHref + "/loginAttempts";
