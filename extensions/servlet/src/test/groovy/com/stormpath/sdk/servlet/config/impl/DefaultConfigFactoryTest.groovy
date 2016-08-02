@@ -143,8 +143,11 @@ class DefaultConfigFactoryTest {
         config = new ConfigLoader().createConfig(new MockServletContext())
     }
 
+    /**
+     * @since 1.0.0
+     */
     @Test
-    public void putProperty() {
+    public void testPutPropertyUpdatesConfigMap() {
 
         String key = "stormpath.test.value"
         String value = "test.value.result"
@@ -156,8 +159,11 @@ class DefaultConfigFactoryTest {
         assertEquals initialSize+1, config.size()
     }
 
+    /**
+     * @since 1.0.0
+     */
     @Test
-    public void putAllProperties() {
+    public void testPutAllPropertiesUpdatesConfigMap() {
 
         String key1 = "stormpath.test.value1"
         String value1 = "test.value.result1"
@@ -178,8 +184,11 @@ class DefaultConfigFactoryTest {
         assertEquals initialSize+2, config.size()
     }
 
+    /**
+     * @since 1.0.0
+     */
     @Test
-    public void removeProperty() {
+    public void testRemovePropertyUpdatesConfigMap() {
 
         String key = "stormpath.test.value"
         String value = "test.value.result"
@@ -195,8 +204,11 @@ class DefaultConfigFactoryTest {
         assertEquals initialSize, config.size()
     }
 
+    /**
+     * @since 1.0.0
+     */
     @Test
-    public void clearProperties() {
+    public void testClearPropertiesUpdatesConfigMap() {
 
         String key = "stormpath.test.value"
         String value = "test.value.result"
